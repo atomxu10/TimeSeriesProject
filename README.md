@@ -216,5 +216,6 @@ Figure 17 shows that the predicted value is closer to the actual value at a sign
 </div>
 <p align="center">Figure 17: Comparison of actual value and predicted value (Weekly data) </p>
 
-
+## Conclusion
+When handling a large time series dataset that is seasonal and periodic, the predicted values from the model are relatively flat and the forecasting accuracy is not enough when using daily data. It is more appropriate to divide the time series data into monthly average data or weekly average data. Using the mean value can avoid data volatility and reduce the size of the error term, which improves the accuracy of the prediction. In this model, the time series shows obvious seasonality, so the SARIMA model is used with monthly average data. By comparing with the actual value, the prediction results all fall within a 95% confidence interval of actual values, so the prediction is acceptable. When modeling with weekly average data, the ARIMA model is used. By comparing with the actual values, 104 prediction results fall within a 95% confidence interval, and only 4 fall outside. Unlike the monthly average, the weekly average is only the average data of 7 days, which is more volatile and less stable. Weekly average data can result in more predicted values and more information than monthly average data. According to the results, the predictions of both models are acceptable.
 
