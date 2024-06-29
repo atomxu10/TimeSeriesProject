@@ -193,7 +193,7 @@ of 𝐴𝑅𝐼𝑀𝐴(3, 0, 2) are smaller, which means that the performance o
 #### Residual analysis
 The p-value of the white noise test result is 0.66 ([Figure 31](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure31.png)), which is greater than the significance level of 0.05. Therefore, the null hypothesis cannot be rejected and the residual sequence is considered to be white noise at a 5% significance level. The residuals ACF plot (Figure 15b) shows that almost all values fall within the confidence interval, so the autocorrelation is likely to be insignificant. The shape of the distribution (Figure 15c) is approximately normally distributed, but it still needs to be tested. The Shapiro-Wilk normality test result ([Figure 32](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure32.png)) shows that p-value=0.002, so at a 5% significance level, we reject the null hypothesis, i.e. the residual series does not fit a normal distribution. 
 <div align="center">
-    <img src="plot2/figure15.png" width="550px" alt="Figure 15">
+    <img src="plot2/figure15.png" width="700px" alt="Figure 15">
 </div>
 
 <p align="center">Figure 15a-15c: Residuals Plot & Residuals ACF & Residuals Distribution </p>
