@@ -177,7 +177,7 @@ The data is significantly cyclical and not seasonal, so we consider using an ARI
 The ACF plot (Figure 14a) shows a sharp drop at the 2nd lag, suggesting that the series can be explained by a moving average model with 2 lag, so we set q = 2. The PACF (Figure 14b) plot shows an exponential downward trend when lag=3, so we set p = 3. Therefore, the model can be expressed as 𝐴𝑅𝐼𝑀𝐴(3, 0, 2).
 
 <div align="center">
-    <img src="plot2/figure14.png" width="700px" alt="Figure 14">
+    <img src="plot2/figure14.png" width="800px" alt="Figure 14">
 </div>
 <p align="center">Figure 14: ACF & PACF plots (Weekly data) </p>
 
