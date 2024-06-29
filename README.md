@@ -17,7 +17,7 @@ The goal of this project is to analyze and model temperatures in Melbourne. All 
         - [Residual analysis](#4-2-2)
 - [Model II (Weekly data)](#5)
     - [Structure](#5-1)
-    - [Model fitting (ARIMA)](#5-2)
+    - [Model fitting (𝐴𝑅𝐼𝑀𝐴)](#5-2)
         - [Parameter selection](#5-2-1)
         - [Residual analysis](#5-2-2)
     - [Forecasting](#5-3)
