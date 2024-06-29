@@ -52,6 +52,7 @@ Figure 1: Decomposition plot (Daily data)
 By observing the image, the trend cannot be clearly described, so the linear regression method is introduced to explore whether there is a trend. The linear fitting result is shown in [Figure 18](https://github.com/atomxu10/TimeSeriesProject/blob/main/figure18.png), and the time series data shows a downward trend.
 
 The seasonal and non-seasonal data are separated for observation (Figure 2). The p-value of ADF test of non-seasonal data [Figure 19](https://github.com/atomxu10/TimeSeriesProject/blob/main/figure19.png) less than 0.05, which can be considered that the non-seasonal data is stationary.
+
 <img src="figure2-1.png" width=400px>
 <img src="figure2-2.png" width=400px>
 
