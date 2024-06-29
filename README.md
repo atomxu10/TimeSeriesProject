@@ -65,7 +65,7 @@ The seasonal and non-seasonal data are separated for observation (Figure 2). The
 
 <p align="center">Figure 2: Non-seasonal data plot (Daily data) & Seasonal data plot (Daily data)</p>
 
-<a name="1-3-1"></a>
+<a name="3-2"></a>
 ### Analysis
 Seasonal difference is required to eliminate the influence of seasonality on the data. However, the seasonal difference function does not support lag greater than 350 in R, therefore the seasonal data is differentiated separately. Figure 3 shows the data image obtained after the first difference, which still shows obvious seasonality, and there is no significant seasonality after the 2nd order difference (Figure 3b). Multiple seasonal differences will reduce the period length of the series, which may cause the model to fail to capture seasonal changes, thus affecting the accuracy of prediction.
 
@@ -77,9 +77,11 @@ In the meanwhile, performing multiple seasonal differences will result in a loss
 
 <p align="center">Figures 3a & 3b: Seasonal data after the 1st differencing & 2nd differencing </p>
 
+<a name="4"></a>
 ## Model I (Monthly data)
 We proceed by dividing the data into months and taking the mean value to obtain a dataset, consisting of the average maximum temperature of each month. The size of the training set is 96, and the testing set is 24.
 
+<a name="4-1"></a>
 ### Structure
 Figure 4 is the decomposed image of monthly data. Similar to the daily data, the monthly data shows significant seasonality. The degree to which the time series is affected by the 12-month seasonal fluctuation is 0.99. Using regression analysis to test the trend of the time series, the p-values of the regression coefficients are less than 0.05. The series shows a slight downward trend.
 
@@ -89,6 +91,7 @@ Figure 4 is the decomposed image of monthly data. Similar to the daily data, the
 
 <p align="center">Figure 4: Decomposition plot (Monthly data) </p>
 
+<a name="4-2"></a>
 ### Model fitting (𝑆𝐴𝑅𝐼𝑀𝐴)
 We use the SARIMA model to process time series data with seasonal structure. The SARIMA model decomposes the time series into seasonal and non-seasonal components and establishes an ARIMA model for each component separately. The SARIMA model can be expressed as 𝑆𝐴𝑅𝐼𝑀𝐴(𝑝, 𝑑, 𝑞) × (𝑃, 𝐷, 𝑄)𝑠.
 
@@ -103,6 +106,7 @@ Seasonal differencing can eliminate the seasonal structure and make the time ser
 The ADF test is a commonly used method in time series analysis, which is used to test the stationarity of the sequence. ([Figure 23a](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure23.png)) is the ADF test result of the data with seasonal differences. The null hypothesis cannot be rejected (H0: the time series is non-stationary), so it cannot be concluded that the time series is stationary.
 To obtain a stationary series, the data needs to be differentiated once. The differenced data can be considered as a stable sequence after the ADF stationarity test ([Figure 23b](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure23-2.png)).
 
+<a name="4-2-1"></a>
 #### Parameter selection
 We determine the seasonal AR and MA order by observing the PACF and ACF plots after the seasonal difference to estimate P and Q (Figure 6). The ACF plot (Figure 6a) shows a sharp drop at 1st lag, which suggests that the series can be explained by a moving average model with 1 lag, therefore we set Q = 1. The PACF plot (Figure 6b) shows that almost all values are within the confidence interval and there is no exponential downward trend and set P = 0.
 
@@ -130,6 +134,7 @@ The method of selecting parameters by observing the ACF and PACF diagrams is not
 
 AIC values (Table 1) between the two models are very close, we considered involving prediction performance to determine which model is more suitable.
 
+<a name="4-2-2"></a>
 #### Residual analysis
 Residual analysis is a method used in statistics to check the quality of fit of a regression model. It is used to check for unexplained parts of the regression model. In time series, residual analysis can be analyzed using the following methods:
 1. White noise test
@@ -138,6 +143,7 @@ Residual analysis is a method used in statistics to check the quality of fit of 
 
 The details of the residual analysis for the two models are not listed individually here but can be found in [Figure 8](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure8.png) and [Figure 9](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure9.png). The conclusion is that both models are suitable for the data.
 
+<a name="4-3"></a>
 ### Forecasting
 Using the testing set (actual data) to compare with the model prediction results, we can determine the accuracy of the prediction results. Figure 11 shows that at a 5% significance level, the residual between the predicted and actual values is small, and the actual value is within the prediction confidence interval (grey region), therefore we can conclude the prediction results from the two models are acceptable.
 
@@ -155,10 +161,12 @@ Using the testing set (actual data) to compare with the model prediction results
 
 Table 2 shows that the performance of model 𝑆𝐴𝑅𝐼𝑀𝐴(0, 1, 2) × (0, 1, 1)12 is much better (smaller MSE and MAE values).
 
+<a name="5"></a>
 ## Model II (Weekly data)
 
 It is undeniable that a certain amount of accuracy will have been lost if we simplify the data to monthly averages, likely due to the small size of the dataset. we divided the data set into weekly average data to get more data involved. The size of the training dataset is 418 and the testing set is 106.
 
+<a name="5-1"></a>
 ### Structure
 Figure 12 is the weekly data plot. The plot appears sinusoidal, therefore we assume it may have significant periodicity. Figure 13 is the ACF diagram, which confirms that the data has significant periodicity (lag=52). The linear fitting result of the data is shown in Figure 29. The p-value of the time variable regression coefficient is 0.24, indicating that the trend is not significant at a 5% significance level.
 
@@ -172,10 +180,12 @@ Figure 12 is the weekly data plot. The plot appears sinusoidal, therefore we ass
 </div>
 <p align="center">Figure 13: ACF plot (Weekly data) </p>
 
+<a name="5-2"></a>
 ### Model fitting (𝐴𝑅𝐼𝑀𝐴)
 
 The data is significantly cyclical and not seasonal, so we consider using an ARIMA model. The ADF stationarity test result (Figure 30) shows that the p-value is less than the significance level of 0.05, therefore the null hypothesis is rejected (H0: the time series is a non-stationary series) and the time series is considered to be stationary (no difference required).
 
+<a name="5-2-1"></a>
 #### Parameter selection
 The ACF plot (Figure 14a) shows a sharp drop at the 2nd lag, suggesting that the series can be explained by a moving average model with 2 lag, so we set q = 2. The PACF (Figure 14b) plot shows an exponential downward trend when lag=3, so we set p = 3. Therefore, the model can be expressed as 𝐴𝑅𝐼𝑀𝐴(3, 0, 2).
 
@@ -193,6 +203,7 @@ of 𝐴𝑅𝐼𝑀𝐴(3, 0, 2) are smaller, which means that the performance o
 
 <p align="center">Table 3: AIC & RMSE (𝐴𝑅𝐼𝑀𝐴(3, 0, 2) & 𝐴𝑅𝐼𝑀𝐴(5, 0, 1)) </p>
 
+<a name="5-2-2"></a>
 #### Residual analysis
 The p-value of the white noise test result is 0.66 ([Figure 31](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure31.png)), which is greater than the significance level of 0.05. Therefore, the null hypothesis cannot be rejected and the residual sequence is considered to be white noise at a 5% significance level. The residuals ACF plot (Figure 15b) shows that almost all values fall within the confidence interval, so the autocorrelation is likely to be insignificant. The shape of the distribution (Figure 15c) is approximately normally distributed, but it still needs to be tested. The Shapiro-Wilk normality test result ([Figure 32](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure32.png)) shows that p-value=0.002, so at a 5% significance level, we reject the null hypothesis, i.e. the residual series does not fit a normal distribution. 
 <div align="center">
@@ -204,6 +215,7 @@ The p-value of the white noise test result is 0.66 ([Figure 31](https://github.c
 
 Considering the data sample is small and the model passes the white noise test, the model is acceptable but still not perfect.
 
+<a name="5-3"></a>
 ### Forecasting
 The data of the first 418 weeks are used as training data in the prediction model. Figure 16 is a forecasting plot from the ARIMA model for the subsequent 108 weeks.
 
@@ -219,6 +231,7 @@ Figure 17 shows that the predicted value is closer to the actual value at a sign
 </div>
 <p align="center">Figure 17: Comparison of actual value and predicted value (Weekly data) </p>
 
+<a name="6"></a>
 ## Conclusion
 When handling a large time series dataset that is seasonal and periodic, the predicted values from the model are relatively flat and the forecasting accuracy is not enough when using daily data. It is more appropriate to divide the time series data into monthly average data or weekly average data. Using the mean value can avoid data volatility and reduce the size of the error term, which improves the accuracy of the prediction. In this model, the time series shows obvious seasonality, so the SARIMA model is used with monthly average data. By comparing with the actual value, the prediction results all fall within a 95% confidence interval of actual values, so the prediction is acceptable. When modeling with weekly average data, the ARIMA model is used. By comparing with the actual values, 104 prediction results fall within a 95% confidence interval, and only 4 fall outside. Unlike the monthly average, the weekly average is only the average data of 7 days, which is more volatile and less stable. Weekly average data can result in more predicted values and more information than monthly average data. According to the results, the predictions of both models are acceptable.
 
