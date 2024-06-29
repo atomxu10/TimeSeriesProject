@@ -68,10 +68,10 @@ Seasonal difference is required to eliminate the influence of seasonality on the
 In the meanwhile, performing multiple seasonal differences will result in a loss of data, because each difference will reduce the dataset. Therefore, daily data will not be considered as a dataset.
 
 <div align="center">
-    <img src="plot2/figure2.png" width="900px" alt="Figure 2">
+    <img src="plot2/figure3.png" width="900px" alt="Figure 3">
 </div>
 
-<p align="center">Figure 2: Non-seasonal data plot (Daily data) & Seasonal data plot (Daily data)</p>
+<p align="center">Figures 3a & 3b: Seasonal data after the 1st differencing & 2nd differencing </p>
 
 
 
