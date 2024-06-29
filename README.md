@@ -201,4 +201,16 @@ The p-value of the white noise test result is 0.66 ([Figure 31](https://github.c
 
 Considering the data sample is small and the model passes the white noise test, the model is acceptable but still not perfect.
 
+### Forecasting
+The data of the first 418 weeks are used as training data in the prediction model. Figure 16 is a forecasting plot from the ARIMA model for the subsequent 108 weeks.
+
+<div align="center">
+    <img src="plot2/figure16.png" width="800px" alt="Figure 16">
+</div>
+<p align="center">Figure 16: Forecasting plot (Weekly data) </p>
+
+
+
+
+
 
