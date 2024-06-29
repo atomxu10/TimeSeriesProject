@@ -43,9 +43,9 @@ The experimental design steps are as follows:
 
 ## Data exploration (Daily data)
 ### Structure
-Structurally split the original data set. Figure1 shows the data after decomposition which can be seen that the original data shows like wavy, and we guess it is cyclical or seasonal.
+Structurally split the original data set. Figure 1 shows the data after decomposition which shows that the original data like wavy, and we guess it is cyclical or seasonal.
 
-<img src="figure1.png" width=800px>
+<img src="plot2\figure1.png" width=800px>
 
 Figure 1: Decomposition plot (Daily data)
 
