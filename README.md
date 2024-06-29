@@ -126,7 +126,13 @@ The method of selecting parameters by observing the ACF and PACF diagrams is not
 
 AIC values (Table 1) between the two models are very close, we considered involving prediction performance to determine which model is more suitable.
 
+#### Residual analysis
+Residual analysis is a method used in statistics to check the quality of fit of a regression model. It is used to check for unexplained parts of the regression model. In time series, residual analysis can be analyzed using the following methods:
+1. White noise test
+2. Autocorrelation (ACF) of the residual series
+3. Normal distribution test of residual series
 
+The details of the residual analysis for the two models are not listed individually here but can be found in [Figure 8](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure8.png) and [Figure 9](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure9.png). The conclusion is that both models are suitable for the data.
 
 
 
