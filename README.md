@@ -56,7 +56,11 @@ By observing the image, the trend cannot be clearly described, so the linear reg
 
 The seasonal and non-seasonal data are separated for observation (Figure 2). The p-value of the ADF test of non-seasonal data [Figure 19](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure19.png) is less than 0.05, which can be considered that the non-seasonal data is stationary.
 
+<div align="center">
+    <img src="plot2/figure2.png" width="700px" alt="Figure 2">
+</div>
 
+<p align="center">Figure 2: Non-seasonal data plot (Daily data) & Seasonal data plot (Daily data)</p>
 
 
 
