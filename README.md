@@ -73,5 +73,18 @@ In the meanwhile, performing multiple seasonal differences will result in a loss
 
 <p align="center">Figures 3a & 3b: Seasonal data after the 1st differencing & 2nd differencing </p>
 
+## Model I (Monthly data)
+We proceed by dividing the data into months and taking the mean value to obtain a dataset, consisting of the average maximum temperature of each month. The size of the training set is 96, testing set is 24.
+
+### Structure
+Figure 4 is the decomposed image of monthly data. Similar to the daily data, the monthly data shows significant seasonality. The degree to which the time series is affected by the 12-month seasonal fluctuation is 0.99. Using regression analysis to test the trend of the time series, the p-values of the regression coefficients are less than 0.05. The series shows a slight downward trend.
+
+<div align="center">
+    <img src="plot2/figure4.png" width="900px" alt="Figure 4">
+</div>
+
+<p align="center">Figure 4: Decomposition plot (Monthly data) </p>
+
+
 
 
