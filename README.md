@@ -154,6 +154,18 @@ Table 2 shows that the performance of model 𝑆𝐴𝑅𝐼𝑀𝐴(0, 1, 2) ×
 
 ## Model II (Weekly data)
 
-It is undeniable that a certain amount of accuracy will have been lost when we simplify the data to monthly averages, likely due to the small size of the dataset. we divided the data set into weekly average data to get more information involved. The size of the training dataset is 418 and the testing set is 106.
+It is undeniable that a certain amount of accuracy will have been lost if we simplify the data to monthly averages, likely due to the small size of the dataset. we divided the data set into weekly average data to get more data involved. The size of the training dataset is 418 and the testing set is 106.
 
+### Structure
+Figure 12 is the weekly data plot. The plot appears sinusoidal, therefore we assume it may have significant periodicity. Figure 13 is the ACF diagram, which confirms that the data has significant periodicity (lag=52). The linear fitting result of the data is shown in Figure 29. The p-value of the time variable regression coefficient is 0.24, indicating that the trend is not significant at a 5% significance level.
+
+<div align="center">
+    <img src="plot2/figure12.png" width="800px" alt="Figure 12">
+</div>
+<p align="center">Figure 12: Weekly data plot </p>
+
+<div align="center">
+    <img src="plot2/figure13.png" width="800px" alt="Figure 13">
+</div>
+<p align="center">Figure 13: ACF plot (Weekly data) </p>
 
