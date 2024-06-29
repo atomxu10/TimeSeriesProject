@@ -28,6 +28,19 @@ The goal of this project is to analyze and model temperatures in Melbourne. All 
 A time series data set consisting of daily maximum temperatures in Melbourne can be found in the file [TempMelbPRO1](https://github.com/atomxu10/TimeSeriesProject/blob/main/TempMelbPRO.csv). The dataset covers a period of 1 January 1981 to 31 December 1990 and it is kindly provided for educational use by the Time Series Data Library and the data provider DataMarket (DataMarket.com).
 <a name="1-1"></a>
 
+## Methodology
+The total number of data is 3650. In order to make a final prediction, the data of 1989 and 1990 are used as the test set, and the data of the first eight years are used as the training set.
+
+In terms of data selection, the data dimension is divided into daily data (original data set data), weekly data (weekly average maximum temperature data) and monthly data (monthly average maximum temperature data). The data is not divided by annual average data because of insufficient data volume.
+
+
+The experimental design steps are as follows:
+1. Structuring the data and describing the structure (trend, cyclicality, seasonality)
+2. 2. Model selection based on data structure (such as ARIMA or SARIMA)
+3. Fitting model (stationary test, order of differences, parameter (p, q) selection)
+4. 4. Test model (residual diagnostics)
+5. Prediction (comparison with testing set)
+
 
 
 
