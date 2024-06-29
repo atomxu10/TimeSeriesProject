@@ -55,10 +55,10 @@ The seasonal and non-seasonal data are separated for observation (Figure 2). The
 
 <div style="display: flex; justify-content: space-between;">
     <div style="flex: 1; text-align: center;">
-        <img src="figure2-1.png" width="300px" alt="Figure 2-1">
+        <img src="figure2-1.png" width="400px" alt="Figure 2-1">
     </div>
     <div style="flex: 1; text-align: center;">
-        <img src="figure2-2.png" width="300px" alt="Figure 2-2">
+        <img src="figure2-2.png" width="400px" alt="Figure 2-2">
     </div>
 </div>
 
