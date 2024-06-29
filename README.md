@@ -149,3 +149,9 @@ Using the testing set (actual data) to compare with the model prediction results
 </div>
 
 <p align="center">Table 2: MSE & MAE (𝑆𝐴𝑅𝐼𝑀𝐴(2, 1, 2) × (0, 1, 1)12 & 𝑆𝐴𝑅𝐼𝑀𝐴(0, 1, 2) × (0, 1, 1)12) </p>
+
+Table 2 shows that the performance of model 𝑆𝐴𝑅𝐼𝑀𝐴(0, 1, 2) × (0, 1, 1)12 is much better (smaller MSE and MAE values).
+
+## Model II (Weekly data)
+
+We simplified the data to monthly averages and make predictions. It is undeniable that a certain amount of accuracy will have been lost, likely due to the small size of the dataset. In order to get more accurate forecast information, we divided the data set into weekly average data. The size of the training dataset is 418 and testing set is 106.
