@@ -108,8 +108,13 @@ We determine the seasonal AR and MA order by observing the PACF and ACF plots af
 
 <p align="center">Figures 6a and 6b: ACF & PACF plots after 1st seasonal difference </p>
 
+In the same way, The ACF plot (Figure 7a) shows a sharp drop at 2nd lag, so set q = 2. The PACF plot (Figure 7b) shows a sharp exponential decrease at 2nd lag, so set p = 2.
 
+<div align="center">
+    <img src="plot2/figure7.png" width="800px" alt="Figure 7">
+</div>
 
+<p align="center">Figures 7a and 7b: ACF & PACF plots after 1st seasonal difference and 1st difference </p>
 
 
 
