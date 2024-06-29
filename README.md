@@ -15,6 +15,7 @@ The goal of this project is to analyze and model temperatures in Melbourne. All 
     - [Model fitting (𝑆𝐴𝑅𝐼𝑀𝐴)](#4-2)
         - [Parameter selection](#4-2-1)
         - [Residual analysis](#4-2-2)
+    - [Forecasting](#4-3)
 - [Model II (Weekly data)](#5)
     - [Structure](#5-1)
     - [Model fitting (𝐴𝑅𝐼𝑀𝐴)](#5-2)
@@ -134,5 +135,12 @@ Residual analysis is a method used in statistics to check the quality of fit of 
 
 The details of the residual analysis for the two models are not listed individually here but can be found in [Figure 8](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure8.png) and [Figure 9](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure9.png). The conclusion is that both models are suitable for the data.
 
+### Forecasting
+Using the testing set (actual data) to compare with the model prediction results, we can determine the accuracy of the prediction results. Figure 11 shows that at a 5% significance level, the residual between the predicted and actual values is small, and the actual value is within the prediction confidence interval (grey region), therefore we can conclude the prediction results from the two models are acceptable.
 
+<div align="center">
+    <img src="plot2/figure11.png" width="700px" alt="Figure 11">
+</div>
+
+<p align="center">Figure 11: Comparison of actual value and predicted value (Model 1 & Model 2) </p>
 
