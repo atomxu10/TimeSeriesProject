@@ -97,5 +97,23 @@ Seasonal differencing can eliminate the seasonal structure and make the time ser
 <p align="center">Figure 5: Data after 1st seasonal difference </p>
 
 The ADF test is a commonly used method in time series analysis, which is used to test the stationarity of the sequence. ([Figure 23a](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure23.png)) is the ADF test result of the data with seasonal differences. The null hypothesis cannot be rejected (H0: the time series is non-stationary), so it cannot be concluded that the time series is stationary.
-To obtain a stationary series, the data needs to be differentiated once. The differenced data can be considered as a stable sequence after the ADF stationarity test ([Figure 23-2](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure23-2.png)).
+To obtain a stationary series, the data needs to be differentiated once. The differenced data can be considered as a stable sequence after the ADF stationarity test ([Figure 23b](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure23-2.png)).
+
+#### Parameter selection
+We determine the seasonal AR and MA order by observing the PACF and ACF plots after the seasonal difference to estimate P and Q (Figure 6). The ACF plot (Figure 6a) shows a sharp drop at 1st lag, which suggests that the series can be explained by a moving average model with 1 lag, therefore we set Q = 1. The PACF plot (Figure 6b) shows that almost all values are within the confidence interval and there is no exponential downward trend and we set P = 0.
+
+<div align="center">
+    <img src="plot2/figure6.png" width="700px" alt="Figure 6">
+</div>
+
+<p align="center">Figures 6a and 6b: ACF & PACF plots after 1st seasonal difference </p>
+
+
+
+
+
+
+
+
+
 
