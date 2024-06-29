@@ -118,7 +118,11 @@ In the same way, The ACF plot (Figure 7a) shows a sharp drop at 2nd lag, so set 
 
 The method of selecting parameters by observing the ACF and PACF diagrams is not unique, the selection of parameters requires consideration of the actual scenario. For example, the final model can be determined by comparing the performance of the model (AIC, BIC) under different parameters. The auto.arima function in R gives the recommended model ([Figure 24](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure24.png)) by checking the quality of the model using information criteria (AIC, BIC). The suggested model given by R is 𝑆𝐴𝑅𝐼𝑀𝐴(0, 1, 2) × (0, 1, 1)12.
 
+<div align="center">
+    <img src="plot2/table1.png" width="700px" alt="Table 1">
+</div>
 
+<p align="center">Table 1: AIC value (𝑆𝐴𝑅𝐼𝑀𝐴(2, 1, 2) × (0, 1, 1)12 & 𝑆𝐴𝑅𝐼𝑀𝐴(0, 1, 2) × (0, 1, 1)12 ) </p>
 
 
 
