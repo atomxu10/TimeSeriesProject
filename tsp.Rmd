@@ -1,0 +1,323 @@
+---
+title: "tsproject"
+output: html_document
+---
+```{r}
+# Globle enviornment
+library(dplyr)
+library(timeSeries)
+library(tseries)
+library(ggplot2)
+library(forecast)
+library(seasonal)
+library(lubridate)
+library(lmtest)
+setwd("/Users/atom/R/timeseries")
+data_temp<-read.csv("TempMelbPRO.csv")
+
+## data cleaning
+colnames(data_temp) <- c("date", "temp")
+data_temp$date <- as.Date(data_temp$date,format = "%d/%m/%Y")
+# separate the data set(traning data: 8 years, testing data: 2 years)
+data_train <- data_temp[1:2920,]
+data_test <- data_temp[2921:3650,]
+# transform data to ts data
+ts_data_temp <- ts(data_train$temp,frequency = 365) # training data
+ts_data_temp_test <- ts(data_test$temp,frequency = 365) # testing data (use it later)
+```
+
+
+```{r fig.height=3, fig.width=8}
+#####################  Daily Data   #######################
+# WH test(Ljung-Box) # make sure the data is not WH
+Box.test(ts_data_temp, type="Ljung-Box")
+
+# ADF test(original dataset(daily))
+adf_ori_daily <- adf.test(ts_data_temp) #result: stationary
+print(adf_ori_daily)
+
+# decomposition result & plot (daily data)
+stlresult <- stl(ts_data_temp,s.window = 365)
+stl_originalTS <- data_train[,2]
+stl_seasonal <- stlresult$time.series[,1]
+stl_trend <- stlresult$time.series[,2]
+stl_remainder <- stlresult$time.series[,3]
+stl_decomposition <- cbind(stl_originalTS,stl_seasonal,stl_trend,stl_remainder) # decoposition combination
+
+x <- ts(stl_decomposition, names=c("Original TS","Seasonal","Trend","Random"), start=c(1981),frequency=365)
+plot.ts(x,main=expression("Decomposition plot(Daily data)"))
+
+# trend test
+ts_trend_daily <- lm(stl_trend ~ time(stl_trend))
+coeftest(ts_trend_daily) #trend obvious
+# we can see the seasonal and trend is obvious, so it must be not stationary
+# separate into seasonal data and non-seasonal data
+# seasonal data : stl_seasonal
+# non-seasonal data : stl_trend + stl_remainder
+stl_nonseasonal <- stl_trend + stl_remainder
+plot(stl_nonseasonal)
+plot(stl_seasonal)
+adf.test(stl_nonseasonal) 
+
+# ADF test (seasonal data)
+adf_seasonal <- adf.test(stl_seasonal) #result: non-stationary
+print(adf_seasonal)
+
+# ADF test (non-seasonal data)
+adf_nonseasonal <- adf.test(stl_nonseasonal) #result: stationary
+print(adf_nonseasonal)
+
+# seasonal data: differencing (1st order)
+diff1_seasonal <- diff(stl_seasonal, lag=365 ,differences = 1)
+plot(diff1_seasonal) # still have obvious seasonality
+
+
+```
+
+
+```{r fig.height=3, fig.width=6}
+#####################  Monthly Data   #######################
+# data cleaning
+mon_data_temp <- aggregate(data_temp$temp, by = list(format(data_temp$date, "%Y-%m")), mean)
+colnames(mon_data_temp) <- c("month", "mean_of_month")
+# mon_data_temp$month <- as.Date(mon_data_temp$month ,format = "%m/%Y")
+mon_data_temp_train <- mon_data_temp[1:96,-1] 
+mon_data_temp_test <- mon_data_temp[97:120,-1] 
+mon_data_temp_train_2 <- mon_data_temp[1:96,] 
+mon_data_temp_test_2 <- mon_data_temp[97:120,] 
+mon_data_temp_test_3 <- mon_data_temp[97:120,] 
+ts_mon_data_temp_all <- ts(mon_data_temp[,-1],start=c(1971,1),frequency = 12)
+ts_mon_data_temp <- ts(mon_data_temp_train,start=c(1971,1),frequency = 12) # training data montly
+ts_mon_data_temp_test <- ts(mon_data_temp_test,start=c(1979,1),frequency = 12) # testing data (use it later)
+
+# WH test(Ljung-Box) # make sure the monthly data is not WH
+Box.test(ts_mon_data_temp, type="Ljung-Box")
+
+# decomposition result & plot (monthly data)
+stlresult_mon <- stl(ts_mon_data_temp,s.window = 12)
+stl_originalTS_mon <- ts_mon_data_temp
+stl_seasonal_mon <- stlresult_mon$time.series[,1]
+stl_trend_mon <- stlresult_mon$time.series[,2]
+stl_remainder_mon <- stlresult_mon$time.series[,3]
+stl_decomposition_mon <- cbind(stl_originalTS_mon,stl_seasonal_mon,stl_trend_mon,stl_remainder_mon)  
+dec_plot <- ts(stl_decomposition_mon, names=c("Original TS","Seasonal","Trend","Random"), start=c(1971,1),frequency = 12)
+plot.ts(dec_plot,main=expression("Decomposition plot(Monthly data)"))
+
+#trend test
+ts_trend_monthly <- lm(stl_trend_mon ~ time(stl_trend_mon))
+coeftest(ts_trend_monthly) # #trend obvious
+#seasonal test
+seas(ts_mon_data_temp) # MA-Seasonal-12 
+# seasonal differencing(1st order) SARIMA(0,0,0)(0,1,0)
+ts_mon_data_temp_diff_0_1 <- diff(ts_mon_data_temp, lag = 12)
+plot(ts_mon_data_temp_diff_0_1) 
+print(seas(ts_mon_data_temp_diff_0_1)) #seasonal test 
+# ADF test(SARIMA(0,0,0)(0,1,0))
+adf.test(ts_mon_data_temp_diff_0_1) #result: non-stationary (need to difference)
+# ACF & PACF (select perameter P&Q)
+acf(ts_mon_data_temp_diff_0_1,main=NULL) # Q=1
+pacf(ts_mon_data_temp_diff_0_1,main=NULL) # P=0
+
+# differencing 1st order SARIMA(0,1,0)(0,1,0)
+ts_mon_data_temp_diff_1_1 <- diff(ts_mon_data_temp_diff_0_1)
+# ADF test(SARIMA(0,1,0)(0,1,0))
+adf.test(ts_mon_data_temp_diff_1_1) #result: stationary
+
+# ACF & PACF (select perameter p&q)
+acf(ts_mon_data_temp_diff_1_1,main=NULL) # q=2
+pacf(ts_mon_data_temp_diff_1_1,main=NULL) # p=2
+
+# checking parameters : auto_model recommendation
+auto_sarima <- auto.arima(ts_mon_data_temp, seasonal = TRUE)
+summary(auto_sarima) # suggest: ARIMA(0,1,2)(0,1,1)[12] 
+
+# Compare two models 
+# SARIMA model (2,1,2)(0,1,1)[12] 
+sarima_model <- arima(ts_mon_data_temp, order = c(2, 1, 2), seasonal = list(order = c(0, 1, 1), period = 12))
+summary(sarima_model)
+# SARIMA model (0,1,2)(0,1,1)[12] 
+sarima_model_auto <- arima(ts_mon_data_temp, order = c(0, 1, 2), seasonal = list(order = c(0, 1, 1), period = 12))
+summary(sarima_model_auto)
+
+## residual analysis 
+# SARIMA model (2,1,2)(0,1,1)[12] 
+residuals <- residuals(sarima_model)
+acf(sarima_model$residuals) # WN
+checkresiduals(sarima_model$residuals) # WN
+shapiro.test(residuals) # no normal distribution
+Box.test(sarima_model$residuals, type="Ljung-Box") # WN test
+# SARIMA model (0,1,2)(0,1,1)[12] 
+residuals2 <- residuals(sarima_model_auto)
+acf(sarima_model_auto$residuals) # WN
+checkresiduals(sarima_model_auto$residuals) # WN
+shapiro.test(residuals2) # no normal distribution
+Box.test(sarima_model_auto$residuals, type="Ljung-Box") # WN test
+
+#  QQ plot
+plot(qqnorm(residuals))
+qqline(residuals)
+
+### Forecast
+# SARIMA forecast testing data result (value & plot)
+sarima_forecast1 <- forecast(sarima_model, h = 24)
+plot(sarima_forecast, main =NULL)
+sarima_forecast2 <- forecast(sarima_model_auto, h = 24)
+plot(sarima_forecast, main =NULL)
+
+# model1
+# detail forcast in confident level 95% plot and 80% level
+names(mon_data_temp_test_2)[which(names(mon_data_temp_test_2) == "mean_of_month")] <- "actual"
+mon_data_temp_test_2$forecast <- c(sarima_forecast1$mean)
+mon_data_temp_test_2$lower95 <- c(sarima_forecast1$lower[,2])
+mon_data_temp_test_2$upper95 <- c(sarima_forecast1$upper[,2])
+mon_data_temp_test_2$lower80 <- c(sarima_forecast1$lower[,1])
+mon_data_temp_test_2$upper80 <- c(sarima_forecast1$upper[,1])
+mon_data_temp_test_2$month <- as.yearmon(mon_data_temp_test_2$month)
+
+# 95%
+ggplot(mon_data_temp_test_2, aes(x = month)) +
+  geom_line(aes(y = actual,color = "actual"),linewidth = 1) +
+  geom_line(aes(y = forecast,color = "forecast"),linetype = "dashed",linewidth = 1) +
+  geom_ribbon(aes(ymin = lower95, ymax = upper95), alpha = 0.5, fill = "grey") +
+  xlab("Time") + ylab("Value") +
+  scale_color_manual(values = c("actual" = "black", "forecast" = "blue"))+
+  geom_point(aes(y = forecast))+
+  theme_bw()
+
+# 80%
+ggplot(mon_data_temp_test_2, aes(x = month)) +
+  geom_line(aes(y = actual,color = "actual"),linewidth = 1) +
+  geom_line(aes(y = forecast,color = "forecast"),linetype = "dashed",linewidth = 1) +
+  geom_ribbon(aes(ymin = lower80, ymax = upper80), alpha = 0.5, fill = "grey") +
+  xlab("Time") + ylab("Value") +
+  scale_color_manual(values = c("actual" = "black", "forecast" = "blue"))+
+  geom_point(aes(y = forecast))+
+  theme_bw()
+
+# model2
+# detail forcast in confident level 95% plot and 80% level
+names(mon_data_temp_test_3)[which(names(mon_data_temp_test_3) == "mean_of_month")] <- "actual"
+mon_data_temp_test_3$forecast <- c(sarima_forecast2$mean)
+mon_data_temp_test_3$lower95 <- c(sarima_forecast2$lower[,2])
+mon_data_temp_test_3$upper95 <- c(sarima_forecast2$upper[,2])
+mon_data_temp_test_3$lower80 <- c(sarima_forecast2$lower[,1])
+mon_data_temp_test_3$upper80 <- c(sarima_forecast2$upper[,1])
+mon_data_temp_test_3$month <- as.yearmon(mon_data_temp_test_2$month)
+
+# 95%
+ggplot(mon_data_temp_test_3, aes(x = month)) +
+  geom_line(aes(y = actual,color = "actual"),linewidth = 1) +
+  geom_line(aes(y = forecast,color = "forecast"),linetype = "dashed",linewidth = 1) +
+  geom_ribbon(aes(ymin = lower95, ymax = upper95), alpha = 0.5, fill = "grey") +
+  xlab("Time") + ylab("Value") +
+  scale_color_manual(values = c("actual" = "black", "forecast" = "blue"))+
+  geom_point(aes(y = forecast))+
+  theme_bw()
+
+# 80%
+ggplot(mon_data_temp_test_2, aes(x = month)) +
+  geom_line(aes(y = actual,color = "actual"),linewidth = 1) +
+  geom_line(aes(y = forecast,color = "forecast"),linetype = "dashed",linewidth = 1) +
+  geom_ribbon(aes(ymin = lower80, ymax = upper80), alpha = 0.5, fill = "grey") +
+  xlab("Time") + ylab("Value") +
+  scale_color_manual(values = c("actual" = "black", "forecast" = "blue"))+
+  geom_point(aes(y = forecast))+
+  theme_bw()
+
+# MSE comparison
+
+
+# forecase the next year (use all data)
+sarima_model2 <- arima(ts_mon_data_temp_all, order = c(2, 1, 2), seasonal = list(order = c(0, 1, 1), period = 12))
+sarima_forecast2 <- forecast(sarima_model2, h = 24)
+plot(sarima_forecast2, main =NULL)
+```
+
+
+
+```{r fig.height=3, fig.width=8}
+#####################  Weekly Data   #######################
+# data cleaning
+xts_data <- xts(data_train[, 2], order.by = as.Date(data_train[, 1]))
+xts_data_test <- xts(data_test[, 2], order.by = as.Date(data_test[, 1]))
+xts_data_weekly <- apply.weekly(xts_data[, 1], FUN = mean)
+xts_data_weekly_test <- apply.weekly(xts_data_test[, 1], FUN = mean)
+xts_data_weekly_regular <- na.approx(xts_data_weekly)
+is.regular(xts_data_weekly_regular)
+plot(xts_data_weekly_regular) # no seasonal but periodicity
+
+
+# WH test(Ljung-Box) # make sure the weekly data is not WH
+Box.test(xts_data_weekly, type="Ljung-Box") # not WH
+
+#trend test
+ts_trend_weekly <- lm(xts_data_weekly ~ time(xts_data_weekly))
+coeftest(ts_trend_weekly) # #trend obvious
+
+# periodicity checking (52 periodicity)
+acf(xts_data_weekly,lag.max=100)
+
+# ARIMA staionary test
+adf.test(xts_data_weekly) #result: stationary (don't need to difference)
+
+# ARMA (select perameter p&q)
+acf(xts_data_weekly,main=NULL) # q
+pacf(xts_data_weekly,main=NULL) # p
+
+# select(3,0,2) & auto arima ARIMA(5,0,1)
+auto_sarima_week <- auto.arima(xts_data_weekly, seasonal = FALSE)
+summary(auto_sarima_week)
+arima_week <- arima(xts_data_weekly, order = c(5, 0, 1))
+arima_week2 <- arima(xts_data_weekly, order = c(3, 0, 2))
+summary(arima_week)
+summary(arima_week2)
+# residual analysis 
+residuals_week2 <- residuals(arima_week2)
+acf(arima_week2$residuals) # WN
+checkresiduals(arima_week2$residuals) # WN
+shapiro.test(residuals_week2) # no normal distribution
+
+#  QQ plot
+plot(qqnorm(residuals_week))
+qqline(residuals_week)
+
+### Forecast
+# ARIMA forecast testing data result (value & plot)
+arima_forecast_week <- forecast(arima_week2, h = 106)
+plot(arima_forecast_week, main =NULL)
+
+
+# detail forcast in confident level 95% plot and 80% level
+week_data_temp_test_2 <- as.data.frame(xts_data_weekly_test)
+names(week_data_temp_test_2)[which(names(week_data_temp_test_2) == "V1")] <- "actual"
+week_data_temp_test_2$forecast <- c(arima_forecast_week$mean)
+week_data_temp_test_2$lower95 <- c(arima_forecast_week$lower[,2])
+week_data_temp_test_2$upper95 <- c(arima_forecast_week$upper[,2])
+week_data_temp_test_2$lower80 <- c(arima_forecast_week$lower[,1])
+week_data_temp_test_2$upper80 <- c(arima_forecast_week$upper[,1])
+week_data_temp_test_2$week <- c(1:106)
+
+# 95%
+ggplot(week_data_temp_test_2, aes(x = week)) +
+  geom_line(aes(y = actual,color = "actual"),linewidth = 1) +
+  geom_line(aes(y = forecast,color = "forecast"),linetype = "dashed",linewidth = 1) +
+  geom_ribbon(aes(ymin = lower95, ymax = upper95), alpha = 0.5, fill = "grey") +
+  xlab("Week") + ylab("Value") +
+  scale_color_manual(values = c("actual" = "black", "forecast" = "blue"))+
+  geom_point(aes(y = forecast))+
+  theme_bw()
+
+# 80% 
+ggplot(week_data_temp_test_2, aes(x = week)) +
+  geom_line(aes(y = actual,color = "actual"),linewidth = 1) +
+  geom_line(aes(y = forecast,color = "forecast"),linetype = "dashed",linewidth = 1) +
+  geom_ribbon(aes(ymin = lower80, ymax = upper80), alpha = 0.5, fill = "grey") +
+  xlab("Week") + ylab("Value") +
+  scale_color_manual(values = c("actual" = "black", "forecast" = "blue"))+
+  geom_point(aes(y = forecast))+
+  theme_bw()
+```
+
+
+
+
