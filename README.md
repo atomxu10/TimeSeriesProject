@@ -41,8 +41,10 @@ The experimental design steps are as follows:
 3. Fitting model (stationary test, order of differences, parameter (p, q) selection)
 4. Test model (residual diagnostics)
 5. Prediction (comparison with testing set)
-
+   
+<a name="1-2"></a>
 ## Data exploration (Daily data)
+<a name="1-3"></a>
 ### Structure
 Structurally split the original data set. Figure 1 shows the data after decomposition which shows that the original data like wavy, and we guess it is cyclical or seasonal.
 
@@ -63,6 +65,7 @@ The seasonal and non-seasonal data are separated for observation (Figure 2). The
 
 <p align="center">Figure 2: Non-seasonal data plot (Daily data) & Seasonal data plot (Daily data)</p>
 
+<a name="1-3-1"></a>
 ### Analysis
 Seasonal difference is required to eliminate the influence of seasonality on the data. However, the seasonal difference function does not support lag greater than 350 in R, therefore the seasonal data is differentiated separately. Figure 3 shows the data image obtained after the first difference, which still shows obvious seasonality, and there is no significant seasonality after the 2nd order difference (Figure 3b). Multiple seasonal differences will reduce the period length of the series, which may cause the model to fail to capture seasonal changes, thus affecting the accuracy of prediction.
 
