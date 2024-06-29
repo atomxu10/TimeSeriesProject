@@ -209,8 +209,12 @@ The data of the first 418 weeks are used as training data in the prediction mode
 </div>
 <p align="center">Figure 16: Forecasting plot (Weekly data) </p>
 
+Figure 17 shows that the predicted value is closer to the actual value at a significance level of 0.05 and most of the actual values are within the prediction confidence interval (grey region). Only 4 actual values are outside the confidence interval, so the prediction result is acceptable.
 
-
+<div align="center">
+    <img src="plot2/figure17.png" width="800px" alt="Figure 17">
+</div>
+<p align="center">Figure 17: Comparison of actual value and predicted value (Weekly data) </p>
 
 
 
