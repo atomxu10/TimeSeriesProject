@@ -169,3 +169,27 @@ Figure 12 is the weekly data plot. The plot appears sinusoidal, therefore we ass
 </div>
 <p align="center">Figure 13: ACF plot (Weekly data) </p>
 
+### Model fitting (𝐴𝑅𝐼𝑀𝐴)
+
+The data is significantly cyclical and not seasonal, so we consider using an ARIMA model. The ADF stationarity test result (Figure 30) shows that the p-value is less than the significance level of 0.05, therefore the null hypothesis is rejected (H0: the time series is a non-stationary series) and the time series is considered to be stationary (no difference required).
+
+#### Parameter selection
+The ACF plot (Figure 14a) shows a sharp drop at the 2nd lag, suggesting that the series can be explained by a moving average model with 2 lag, so we set q = 2. The PACF (Figure 14b) plot shows an exponential downward trend when lag=3, so we set p = 3. Therefore, the model can be expressed as 𝐴𝑅𝐼𝑀𝐴(3, 0, 2).
+
+<div align="center">
+    <img src="plot2/figure14.png" width="700px" alt="Figure 14">
+</div>
+<p align="center">Figure 14: ACF & PACF plots (Weekly data) </p>
+
+The recommended model is given by the auto.arima function in R is 𝐴𝑅𝐼𝑀𝐴(5, 0, 1). From the comparison of the two models (Table 3), it can be seen that the AIC and RMSE values
+of 𝐴𝑅𝐼𝑀𝐴(3, 0, 2) are smaller, which means that the performance of the model on the training set is much better.
+
+<div align="center">
+    <img src="plot2/table3.png" width="550px" alt="Table 3">
+</div>
+
+<p align="center">Table 3: AIC & RMSE (𝐴𝑅𝐼𝑀𝐴(3, 0, 2) & 𝐴𝑅𝐼𝑀𝐴(5, 0, 1)) </p>
+
+
+
+
