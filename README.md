@@ -100,7 +100,7 @@ The ADF test is a commonly used method in time series analysis, which is used to
 To obtain a stationary series, the data needs to be differentiated once. The differenced data can be considered as a stable sequence after the ADF stationarity test ([Figure 23b](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure23-2.png)).
 
 #### Parameter selection
-We determine the seasonal AR and MA order by observing the PACF and ACF plots after the seasonal difference to estimate P and Q (Figure 6). The ACF plot (Figure 6a) shows a sharp drop at 1st lag, which suggests that the series can be explained by a moving average model with 1 lag, therefore we set Q = 1. The PACF plot (Figure 6b) shows that almost all values are within the confidence interval and there is no exponential downward trend and we set P = 0.
+We determine the seasonal AR and MA order by observing the PACF and ACF plots after the seasonal difference to estimate P and Q (Figure 6). The ACF plot (Figure 6a) shows a sharp drop at 1st lag, which suggests that the series can be explained by a moving average model with 1 lag, therefore we set Q = 1. The PACF plot (Figure 6b) shows that almost all values are within the confidence interval and there is no exponential downward trend and set P = 0.
 
 <div align="center">
     <img src="plot2/figure6.png" width="800px" alt="Figure 6">
@@ -115,6 +115,8 @@ In the same way, The ACF plot (Figure 7a) shows a sharp drop at 2nd lag, so set 
 </div>
 
 <p align="center">Figures 7a and 7b: ACF & PACF plots after 1st seasonal difference and 1st difference </p>
+
+The method of selecting parameters by observing the ACF and PACF diagrams is not unique, the selection of parameters requires consideration of the actual scenario. For example, the final model can be determined by comparing the performance of the model (AIC, BIC) under different parameters. The auto.arima function in R gives the recommended model ([Figure 24](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure24.png)) by checking the quality of the model using information criteria (AIC, BIC). The suggested model given by R is 𝑆𝐴𝑅𝐼𝑀𝐴(0, 1, 2) × (0, 1, 1)12.
 
 
 
