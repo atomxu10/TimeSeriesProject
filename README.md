@@ -48,8 +48,9 @@ Structurally split the original data set. Figure1 shows the data after decomposi
 <img src="figure1.png" width=800px>
 Figure 1: Decomposition plot (Daily data) 
 
-
 By observing the image, the trend cannot be clearly described, so the linear regression method is introduced to explore whether there is a trend. The linear fitting result is shown in [Figure 18](https://github.com/atomxu10/TimeSeriesProject/blob/main/figure18.png), and the time series data shows a downward trend.
+
+haha
 
 
 
