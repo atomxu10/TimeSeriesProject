@@ -45,33 +45,20 @@ The experimental design steps are as follows:
 ### Structure
 Structurally split the original data set. Figure 1 shows the data after decomposition which shows that the original data like wavy, and we guess it is cyclical or seasonal.
 
-<img src="plot2\figure1.png" width=800px>
+<div align="center">
+    <img src="plot2/figure1.png" width="800px" alt="Figure 1">
+</div>
 
-Figure 1: Decomposition plot (Daily data)
+<p align="center">Figure 1: Decomposition plot (Daily data)</p>
+
 
 By observing the image, the trend cannot be clearly described, so the linear regression method is introduced to explore whether there is a trend. The linear fitting result is shown in [Figure 18](https://github.com/atomxu10/TimeSeriesProject/blob/main/figure18.png), and the time series data shows a downward trend.
 
 The seasonal and non-seasonal data are separated for observation (Figure 2). The p-value of ADF test of non-seasonal data [Figure 19](https://github.com/atomxu10/TimeSeriesProject/blob/main/figure19.png) less than 0.05, which can be considered that the non-seasonal data is stationary.
 
-<div style="display: flex; justify-content: space-between;">
-    <div style="flex: 1; text-align: center;">
-        <img src="figure2-1.png" width="400px" alt="Figure 2-1">
-    </div>
-    <div style="flex: 1; text-align: center;">
-        <img src="figure2-2.png" width="400px" alt="Figure 2-2">
-    </div>
-</div>
-
-<p style="text-align: center;">Figure 2: Non-seasonal data plot (Daily data) & Seasonal data plot (Daily data)</p>
 
 
 
-<img src="figure2-1.png" width=400px>
-<div align="center">
-    <img src="figure2-2.png" width="400px" alt="Figure 2-2">
-</div>
-
-<p align="center">Figure 2: Non-seasonal data plot (Daily data) & Seasonal data plot (Daily data)</p>
 
 
 
