@@ -94,5 +94,8 @@ Seasonal differencing can eliminate the seasonal structure and make the time ser
     <img src="plot2/figure5.png" width="700px" alt="Figure 5">
 </div>
 
-<p align="center">Figure 5: Data image after 1st seasonal difference </p>
+<p align="center">Figure 5: Data after 1st seasonal difference </p>
+
+The ADF test is a commonly used method in time series analysis, which is used to test the stationarity of the sequence. ([Figure 23a](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure23.png)) is the ADF test result of the data with seasonal differences. The null hypothesis cannot be rejected (H0: the time series is non-stationary), so it cannot be concluded that the time series is stationary.
+To obtain a stationary series, the data needs to be differentiated once. The differenced data can be considered as a stable sequence after the ADF stationarity test ([Figure 23-2](https://github.com/atomxu10/TimeSeriesProject/blob/main/plot2/figure23-2.png)).
 
