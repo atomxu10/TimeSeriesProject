@@ -22,3 +22,16 @@ The goal of this project is to analyze and model temperatures in Melbourne. All 
         - [Residual analysis](#5-2-2)
     - [Forecasting](#5-3)
 - [Conclusion](#6)
+
+## Data
+A time series data set consisting of daily maximum temperatures in Melbourne can be found in the file [TempMelbPRO1](https://github.com/atomxu10/TimeSeriesProject/blob/main/TempMelbPRO.csv). The data set covers a period of 1 January 1981 to 31 December 1990 and it is kindly provided for educational use by the Time Series Data Library and the data provider DataMarket (DataMarket.com).
+
+
+
+
+
+
+
+
+
+
