@@ -1,5 +1,5 @@
-![Language](https://img.shields.io/badge/language-R-blue)
-# Analysis of Daily Temperatures in Melbourne
+
+# Analysis of Daily Temperatures in Melbourne ![Language](https://img.shields.io/badge/language-R-blue)
 
 Temperature data is usually analyzed and utilized as time series data. Time series models are frequently used to analyze trends and predict the future.
 
