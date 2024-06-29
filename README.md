@@ -124,6 +124,8 @@ The method of selecting parameters by observing the ACF and PACF diagrams is not
 
 <p align="center">Table 1: AIC value (𝑆𝐴𝑅𝐼𝑀𝐴(2, 1, 2) × (0, 1, 1)12 & 𝑆𝐴𝑅𝐼𝑀𝐴(0, 1, 2) × (0, 1, 1)12 ) </p>
 
+AIC values (Table 1) between the two models are very close, we considered involving prediction performance to determine which model is more suitable.
+
 
 
 
