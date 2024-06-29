@@ -36,7 +36,7 @@ In terms of data selection, the data dimension is divided into daily data (origi
 
 The experimental design steps are as follows:
 1. Structuring the data and describing the structure (trend, cyclicality, seasonality)
-2. Model selection based on data structure (such as ARIMA or SARIMA)
+2. Model selection based on the data structure (𝐴𝑅𝐼𝑀𝐴, 𝑆𝐴𝑅𝐼𝑀𝐴)
 3. Fitting model (stationary test, order of differences, parameter (p, q) selection)
 4. Test model (residual diagnostics)
 5. Prediction (comparison with testing set)
@@ -74,7 +74,7 @@ In the meanwhile, performing multiple seasonal differences will result in a loss
 <p align="center">Figures 3a & 3b: Seasonal data after the 1st differencing & 2nd differencing </p>
 
 ## Model I (Monthly data)
-We proceed by dividing the data into months and taking the mean value to obtain a dataset, consisting of the average maximum temperature of each month. The size of the training set is 96, testing set is 24.
+We proceed by dividing the data into months and taking the mean value to obtain a dataset, consisting of the average maximum temperature of each month. The size of the training set is 96, and the testing set is 24.
 
 ### Structure
 Figure 4 is the decomposed image of monthly data. Similar to the daily data, the monthly data shows significant seasonality. The degree to which the time series is affected by the 12-month seasonal fluctuation is 0.99. Using regression analysis to test the trend of the time series, the p-values of the regression coefficients are less than 0.05. The series shows a slight downward trend.
