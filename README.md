@@ -88,4 +88,11 @@ Figure 4 is the decomposed image of monthly data. Similar to the daily data, the
 ### Model fitting (𝑆𝐴𝑅𝐼𝑀𝐴)
 We use the SARIMA model to process time series data with seasonal structure. The SARIMA model decomposes the time series into seasonal and non-seasonal components and establishes an ARIMA model for each component separately. The SARIMA model can be expressed as 𝑆𝐴𝑅𝐼𝑀𝐴(𝑝, 𝑑, 𝑞) × (𝑃, 𝐷, 𝑄)𝑠.
 
+Seasonal differencing can eliminate the seasonal structure and make the time series more stationary. Figure 5 is the data after 1st seasonal difference (lag=12). Compared with the data image before the difference, the seasonality after the seasonal difference is not as significant, and the degree of influence by the 12-month seasonal fluctuation is reduced to 0.63 (Figure 22). Multiple seasonal differences may lead to loss of data information. To retain more data and ensure the accuracy of the model, we will no longer continue to perform multiple seasonal differences.
+
+<div align="center">
+    <img src="plot2/figure5.png" width="700px" alt="Figure 5">
+</div>
+
+<p align="center">Figure 5: Data image after 1st seasonal difference </p>
 
