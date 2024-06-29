@@ -67,8 +67,11 @@ The seasonal and non-seasonal data are separated for observation (Figure 2). The
 
 
 <img src="figure2-1.png" width=400px>
-<img src="figure2-2.png" width=400px>
+<div align="center">
+    <img src="figure2-2.png" width="400px" alt="Figure 2-2">
+</div>
 
-Figure 2: Non-seasonal data plot (Daily data) & Seasonal data plot (Daily data)
+<p align="center">Figure 2: Non-seasonal data plot (Daily data) & Seasonal data plot (Daily data)</p>
+
 
 
