@@ -43,11 +43,12 @@ The experimental design steps are as follows:
 
 ## Data exploration (Daily data)
 ### Structure
-Structurally split the original data set. Figure1 shows the data after decomposition which can be seen that the original data shows like wavy, and we guess it is cyclical or seasonal. By observing the image, the trend cannot be clearly described, so the linear regression method is introduced to explore whether there is a trend.
+Structurally split the original data set. Figure1 shows the data after decomposition which can be seen that the original data shows like wavy, and we guess it is cyclical or seasonal.
 
-<img src="figure1.png" width=600px>
+<img src="figure1.png" width=800px>
+Figure 1: Decomposition plot (Daily data)
 
-
+By observing the image, the trend cannot be clearly described, so the linear regression method is introduced to explore whether there is a trend.
 
 
 
