@@ -144,3 +144,8 @@ Using the testing set (actual data) to compare with the model prediction results
 
 <p align="center">Figure 11: Comparison of actual value and predicted value (Model 1 & Model 2) </p>
 
+<div align="center">
+    <img src="plot2/table2.png" width="550px" alt="Table 2">
+</div>
+
+<p align="center">Table 2: MSE & MAE (𝑆𝐴𝑅𝐼𝑀𝐴(2, 1, 2) × (0, 1, 1)12 & 𝑆𝐴𝑅𝐼𝑀𝐴(0, 1, 2) × (0, 1, 1)12) </p>
