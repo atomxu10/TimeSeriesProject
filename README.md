@@ -103,7 +103,7 @@ To obtain a stationary series, the data needs to be differentiated once. The dif
 We determine the seasonal AR and MA order by observing the PACF and ACF plots after the seasonal difference to estimate P and Q (Figure 6). The ACF plot (Figure 6a) shows a sharp drop at 1st lag, which suggests that the series can be explained by a moving average model with 1 lag, therefore we set Q = 1. The PACF plot (Figure 6b) shows that almost all values are within the confidence interval and there is no exponential downward trend and we set P = 0.
 
 <div align="center">
-    <img src="plot2/figure6.png" width="700px" alt="Figure 6">
+    <img src="plot2/figure6.png" width="800px" alt="Figure 6">
 </div>
 
 <p align="center">Figures 6a and 6b: ACF & PACF plots after 1st seasonal difference </p>
