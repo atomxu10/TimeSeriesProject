@@ -154,4 +154,6 @@ Table 2 shows that the performance of model 𝑆𝐴𝑅𝐼𝑀𝐴(0, 1, 2) ×
 
 ## Model II (Weekly data)
 
-We simplified the data to monthly averages and make predictions. It is undeniable that a certain amount of accuracy will have been lost, likely due to the small size of the dataset. In order to get more accurate forecast information, we divided the data set into weekly average data. The size of the training dataset is 418 and testing set is 106.
+It is undeniable that a certain amount of accuracy will have been lost when we simplify the data to monthly averages, likely due to the small size of the dataset. we divided the data set into weekly average data to get more information involved. The size of the training dataset is 418 and the testing set is 106.
+
+
