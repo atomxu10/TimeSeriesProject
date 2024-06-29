@@ -4,3 +4,21 @@ Temperature data is usually analyzed and utilized as time series data. Time seri
 
 The goal of this project is to analyze and model temperatures in Melbourne. All corresponding codes (R Markdown) can be found in the [tsp.Rmd](https://github.com/atomxu10/TimeSeriesProject/blob/main/tsp.Rmd).
 
+## Content
+- [Data](#1)
+- [Methodology](#2)
+- [Data exploration (Daily data)](#3)
+    - [Structure](#3-1)
+    - [Analysis](#3-2)
+- [Model I (Monthly data)](#4)
+    - [Structure](#4-1)
+    - [Model fitting (SARIMA)](#4-2)
+        - [Parameter selection](#4-2-1)
+        - [Residual analysis](#4-2-2)
+- [Model II (Weekly data)](#5)
+    - [Structure](#5-1)
+    - [Model fitting (ARIMA)](#5-2)
+        - [Parameter selection](#5-2-1)
+        - [Residual analysis](#5-2-2)
+    - [Forecasting](#5-3)
+- [Conclusion](#6)
