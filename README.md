@@ -12,7 +12,7 @@ The goal of this project is to analyze and model temperatures in Melbourne. All 
     - [Analysis](#3-2)
 - [Model I (Monthly data)](#4)
     - [Structure](#4-1)
-    - [Model fitting (SARIMA)](#4-2)
+    - [Model fitting (𝑆𝐴𝑅𝐼𝑀𝐴)](#4-2)
         - [Parameter selection](#4-2-1)
         - [Residual analysis](#4-2-2)
 - [Model II (Weekly data)](#5)
