@@ -36,13 +36,15 @@ In terms of data selection, the data dimension is divided into daily data (origi
 
 The experimental design steps are as follows:
 1. Structuring the data and describing the structure (trend, cyclicality, seasonality)
-2. 2. Model selection based on data structure (such as ARIMA or SARIMA)
+2. Model selection based on data structure (such as ARIMA or SARIMA)
 3. Fitting model (stationary test, order of differences, parameter (p, q) selection)
-4. 4. Test model (residual diagnostics)
+4. Test model (residual diagnostics)
 5. Prediction (comparison with testing set)
 
-
-
+## Data exploration (Daily data)
+### Structure
+Structurally split the original data set. Figure1 shows the data after decomposition which can be seen that the original data shows like wavy, and we guess it is cyclical or seasonal. By observing the image, the trend cannot be clearly described, so the linear regression method is introduced to explore whether there is a trend.
+<img src="./TimeSeriesProject/figure1.png" width=500px>
 
 
 
