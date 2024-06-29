@@ -85,6 +85,7 @@ Figure 4 is the decomposed image of monthly data. Similar to the daily data, the
 
 <p align="center">Figure 4: Decomposition plot (Monthly data) </p>
 
-
+### Model fitting (SARIMA)
+We use the SARIMA model to process time series data with seasonal structure. The SARIMA model decomposes the time series into seasonal and non-seasonal components and establishes an ARIMA model for each component separately. The SARIMA model can be expressed as 𝑆𝐴𝑅𝐼𝑀𝐴(𝑝, 𝑑, 𝑞) × (𝑃, 𝐷, 𝑄)𝑠.
 
 
